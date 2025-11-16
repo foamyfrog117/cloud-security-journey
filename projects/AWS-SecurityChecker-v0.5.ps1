@@ -119,9 +119,10 @@ function Get-S3SecurityFindings {
             # If $policy.Policy was null, $hasSSLEnforcement remains $false (correct)
         }
         catch {
-            # This catch block is hit if Get-S3BucketPolicy fails (e.g., no policy exists)
-            $hasSSLEnforcement = $false  # No policy = no enforcement
-        }
+    # DEBUG
+    Write-Host "  DEBUG: Policy check failed with: $_" -ForegroundColor Magenta
+    $hasSSLEnforcement = $false
+}
 
         
         # --- 2. NEW LOGIC: DETERMINE ALL ISSUES AND SEVERITY ---
